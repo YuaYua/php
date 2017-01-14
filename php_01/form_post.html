@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--form表单的action属性用来决定form表单要提交的位置-->
+		<!--method决定form表单要用哪种请求方式-->
+		<!--post请求不会在地址栏显示input的内容，安全性好-->
+		<form action="php_01_post.php" method="post">
+			<!--http://127.0.0.1/shh/php/php_01/php_01_post.php?key=value -->
+			<!--name属性由后台决定-->
+			<!--input框的name属性决定我们请求的参数的key-->
+			<!--value决定key=后面的值-->
+			<input type="text" name="username" id="" value="" />
+			<input type="text" name="password" id="" value="" />
+			<input type="submit" value="post"/>
+		</form>
+		<a href="php_01_get.php?username=lck&password=123">get</a>
+	</body>
+</html>
