@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#myCanvas {
+				box-shadow: 0 0 3px slateblue;
+			}
+		</style>
+	</head>
+
+	<body>
+		<canvas id="myCanvas" width="600" height="600"></canvas>
+	</body>
+	<script type="text/javascript">
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+
+		function Line(start, end, speedX, speedY) {
+			this.startx = start.x;
+			this.starty = start.y;
+			this.endx = end.x;
+			this.endy = end.y;
+			this.x = start.x;
+			this.y = start.y;
+			this.speedX = speedX;
+			this.speedY = speedY;
+			this.drawOver=false;
+		}
+		Line.prototype.draw = function() {
+			ctx.beginPath();
+			ctx.moveTo(this.startx, this.starty);
+			ctx.lineTo(this.x, this.y);
+			ctx.stroke();
+		}
+		Line.prototype.move = function() {
+			this.x += this.speedX;
+			this.y += this.speedY;
+			if(this.speed >= 0) {
+				if(this.x >= this.endx) {
+					this.drawOver=true;
+					this.x = this.endx;
+					this.y = this.endy;
+				}
+				//				if(this.y>=this.endy){
+				//					this.y=this.endy;
+				//				}
+			} else {
+				if(this.x <= this.endx) {
+//					this.drawOver=true;
+					this.x = this.endx;
+					this.y = this.endy;
+				}
+				//				if(this.y<=this.endy){
+				//					this.y=this.endy;
+				//				}
+			}
+		}
+
+//		var line = new Line({
+//			x: 300,
+//			y: 300
+//		}, {
+//			x: 200,
+//			y: 200
+//		}, -1, -1);
+		
+		function zhexian(arr){
+			var zhexianArr=[];
+			for(var j=0;j<arr.length;j++){
+				var lineArr=[];
+				var speed=1;
+				for(var i=1;i<arr[j].length;i++){
+					var length=Math.sqrt(Math.pow((arr[j][i].x-arr[j][i-1].x),2)+Math.pow((arr[j][i].y-arr[j][i-1].y),2));
+					var time=length/speed;
+					var speedX=(arr[j][i].x-arr[j][i-1].x)/time;
+					var speedY=(arr[j][i].y-arr[j][i-1].y)/time;
+					var line=new Line(arr[j][i-1],arr[j][i],speedX,speedY);
+					lineArr.push(line);
+				}
+				zhexianArr.push(lineArr);
+			}
+			
+			
+			function ani(){
+				ctx.clearRect(0,0,canvas.width,canvas.height);
+				for(var j=0;j<zhexianArr.length;j++){
+					for(var i=0;i<zhexianArr[j].length;i++){
+						if(i>0&&zhexianArr[j][i-1].drawOver==false){
+							continue;
+						}
+						zhexianArr[j][i].draw();
+						zhexianArr[j][i].move();
+					}
+				}
+				
+				window.requestAnimationFrame(ani);
+			}
+			ani();
+			
+		}
+		
+		zhexian([[
+			{
+				x:500,
+				y:100
+			},
+			{
+				x:300,
+				y:100
+			},
+			{
+				x:100,
+				y:500
+			}
+		]]);
+	</script>
+
+</html>
