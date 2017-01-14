@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#myCanvas{
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="600" height="600"></canvas>
+	</body>
+</html>
+<script type="text/javascript">
+	var myCanvas=document.getElementById("myCanvas");
+	var context=myCanvas.getContext('2d');
+	
+	function Sect(x,y,w,h,color){
+		this.x=x;
+		this.y=y;
+		this.w=w;
+		this.h=h;
+		this.color=color;
+	}
+	
+	Sect.prototype.draw=function(){
+		context.beginPath();
+		context.rect(this.x,this.y,this.w,this.h);
+		context.fillStyle=this.color;
+		context.fill();
+		context.stroke();
+		
+	}
+	Sect.prototype.move=function(){
+		this.x+=50;
+	}
+	
+	function Snake(){
+		this.elements=[];
+		for(var i=0;i<4;i++){
+			var sect1=new Sect(300+i*50,300,50,50,"red");
+			this.elements.push(sect1);
+		}
+		this.elements[0].color="green";
+	}
+	
+	
+	Snake.prototype.move=function(){
+		var sect2=new Sect(this.elements[0].x,this.elements[0].y,50,50,"red");
+		sect2.draw();
+		this.elements[0].move();
+		this.elements.pop();
+		this.elements.push(sect2);
+	}
+	
+	var snake=new Snake();
+	var times=0;
+	
+	function ani(){
+//		console.log(1);
+		times++;
+
+		for(var i=0;i<snake.elements.length;i++){
+			snake.elements[i].draw();
+		}
+		
+//		window.requestAnimationFrame(ani);
+	}
+	ani();
+	
+	
+	
+
+	
+	
+	
+</script>

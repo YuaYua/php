@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				width: 100%;
+				height: 100%;
+			}
+			#bookDiv{
+				padding: 10px;
+				text-align: center;
+				margin: 0 auto;
+				position: relative;
+				width: 70%;
+				/*height: 50vh;*/
+				background: orange;
+			}
+			#bookForm{
+				position: relative; 
+				width: 100%;
+				height: 100%;                                                   
+			}
+			#bookin{
+				width: 100%;
+				height: 320px;
+				position: relative;
+				margin-left: 7%;
+			}
+			#bookin>span{
+				position: absolute;
+				display: block;
+				right: 87%;
+			}
+			#bookin>span:nth-of-type(1){
+				top: 0;
+				
+			}
+			#bookin>span:nth-of-type(2){
+				top: 40px;
+			}
+			#bookin>span:nth-of-type(3){
+				top: 80px;
+			}
+			#bookin>span:nth-of-type(4){
+				top: 120px;
+			}
+			#bookin>span:nth-of-type(5){
+				top: 160px;
+			}
+			#bookin>span:nth-of-type(6){
+				top: 200px;
+			}
+			#bookin>span:nth-of-type(7){
+				top: 240px;
+			}
+			#bookin>span:nth-of-type(8){
+				top: 280px;
+			}
+			#bookin>input{
+				border-style: none;
+				position: absolute;
+				display: block;
+				width: 70%;
+				height: 25px;
+				border: 1px solid gainsboro;
+				border-radius: 3px;
+				left: 15%;
+			}
+			#bookin>input:nth-of-type(1){
+				top: -8px;
+			}
+			#bookin>input:nth-of-type(2){
+				top: 32px;
+			}
+			#bookin>input:nth-of-type(3){
+				top: 72px;
+			}
+			#bookin>input:nth-of-type(4){
+				top: 112px;
+			}
+			#bookin>input:nth-of-type(5){
+				top: 152px;
+			}
+			#bookin>input:nth-of-type(6){
+				top: 192px;
+			}
+			#bookin>input:nth-of-type(7){
+				top: 232px;
+			}
+			#bookin>input:nth-of-type(8){
+				top: 280px;
+				border: initial;
+			}
+			#bookin>input:nth-of-type(9){
+				top: 320px;
+				width: 38px;
+				background-color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="bookDiv">
+			<h1>添加图书</h1>
+			<form id="bookForm" action="insertBook.php" method="post" enctype="multipart/form-data">
+				<div id="bookin">
+					<span>书名：</span><input type="text" name="bookName" id="" value="" placeholder="书名" />
+					<span>简介：</span><input type="text" name="bookIntro" id="" value="" placeholder="简介" />
+					<span>作者：</span><input type="text" name="author" id="" value="" placeholder="作者" />
+					<span>出版社：</span><input type="text" name="publisher" id="" value="" placeholder="出版社" />
+					<span>出版日期：</span><input type="text" name="date" id="" value="" placeholder="出版日期" />
+					<span>价格：</span><input type="text" name="price" id="" value="" placeholder="价格" />
+					<span>ISBN：</span><input type="text" name="isbn" id="" value="" placeholder="ISBN" />
+					<span>书籍图片：</span><input type="file" name="bookImg" id="" value="" />
+				</div>
+				<input type="submit" value="添加" />
+			</form>
+		</div>
+	</body>
+
+</html>
